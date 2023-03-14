@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	alert("게시판 글쓰기 페이지입니다. 반갑습니다.!")
+</script>
+<style type="text/css">
+body {
+	background: #18de02;
+}
+
+button {
+	background: pink;
+}
+
+.t1 {
+	background: yellow;
+	width: 150px;
+	text-align: center;
+}
+
+#b1 {
+	color: red;
+}
+
+#b2 {
+	color: blue;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<!-- no, title, content, writer 게시판글쓰기 -->
+	<h3>게시판 글쓰기 페이지</h3>
+	<hr>
+	<a href="bbs.html">
+		<button id="b1">게시판 정보 페이지로</button>
+	</a>
+	<form action="insert22.jsp">
+		<table border="1">
+			<tr>
+				<td class="t1">번호</td>
+				<td><input name="no"></td>
+			</tr>
+			<tr>
+				<td class="t1">제목</td>
+				<td><input name="title"></td>
+			</tr>
+			<tr>
+				<td class="t1">내용</td>
+				<td><input name="content"></td>
+			</tr>
+			<tr>
+				<td class="t1">작성자</td>
+				<td><input name="writer"></td>
+			</tr>
+			<tr>
+				<td colspan="2" class = "t1">
+					<button id="b2">게시판 글 데이터 전송</button>
+				</td>
+			</tr>
+		</table>
+		<!-- 입력한 값들이 서버(톰킷)으로 전달되려면 form안에 있어야 함 -->
+		<!-- http://localhost:8888/web00/insert.jsp?id=asd&pw=asd&name=asd&tel=asd -->
+	</form>
+</body>
+</html>
