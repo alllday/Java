@@ -1,11 +1,8 @@
-<%@page import="multi.MemberDAO3"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    String id = request.getParameter("id");
-    
-    MemberDAO3 dao = new MemberDAO3();
-    dao.delete(id);
+    	// 클라이언트가 입력한 no를 서버에서 받아주기(자바로!)
+    	String no = request.getParameter("no");
     %>
 <!DOCTYPE html>
 <html>
@@ -14,6 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-id : <%= id %>
+	당신이 삭제를 원하는 번호는 <%= no %>
 </body>
 </html>
