@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function me() {
+		name = document.getElementById("name").value
+		company = document.getElementById("company").value
+		position = document.getElementById("position").value
+		gender = document.getElementById("gender").value
+
+		total = company + "회사에 " + position + "으로 있는 " + name + "입니다."
+		if (gender == "남자") {
+			total += '<br> <img src=img/yes.jpg width=200 height=200>'
+		} else if (gender == "여자") {
+			total += '<br> <img src=img/no.jpg width=200 height=200>'
+		}
+		
+		document.getElementById("result").innerHTML = total
+		
+		/* 
+		text = document.getElementById("text")
+		if (name != "" && company != "" && position != "") {
+			text.innerHTML = company + "회사에 " + position + "으로 있는 " + name + "입니다."	
+		}
+		
+		img = document.getElementById("img")
+		if (gender == "남자") {
+			img.innerHTML = '<img src=img/yes.jpg width=200 height=200>'	
+		} else if(gender == "여자"){
+			img.innerHTML = '<img src=img/no.jpg width=200 height=200>'
+		}
+		*/
+		
+		
+ 
+	}
+</script>
+</head>
+<body>
+	이름 : <input id="name"><br>
+	회사명 : <input id="company"><br>
+	직책 : <input id="position"><br>
+	성별 : <input id="gender"><br>
+	<button onclick="me()">확인</button>
+	<div id="result"></div>
+</body>
+</html>

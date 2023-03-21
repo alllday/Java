@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	function pass() {
+		pw = document.getElementById("pw").value
+		pw2 = document.getElementById("pw2").value
+
+		//resultTag = document.getElementById("result")
+		if (pw == pw2) {
+			//resultTag.innerHTML = '<img src=img/yes.jpg width=300 height=200>'
+			location.href = "http://www.naver.com"
+		} else {
+			//resultTag.innerHTML = '<img src=img/no.jpg width=300 height=200>'
+			location.href = "http://www.daum.net"
+		}
+	}
+	
+	function length() {
+		id = document.getElementById("user").value
+
+		if (id.length >= 5) {
+			alert("가입가능")
+		} else {
+			alert("가입불가능")
+		}
+	}
+
+</script>
+
+</head>
+<body>
+	아이디 : <input id='user' value='test'> 
+	<button onclick="length()" style="color: blue; background: pink">글자수 체크</button><br>
+	패스워드 : <input id='pw' value='test'><br>
+	패스워드2 : <input id='pw2' value='test'>
+	 <button onclick="pass()" style="color: white; background: green">패스워드 동일</button><br>
+	
+	<br>
+	
+	<div id="result"
+		style="color: red; background: yellow; width: 500px; height: 50px; font-size: 30px">
+		<img src="img/no.jpg" width=300 height=200>
+		</div>
+
+</body>
+</html>
