@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#b1').click(function() {
+			divTag = $('#result')
+			text = $('#text').val()
+			divTag.append(text+'<br>')
+		})
+		
+		$('#b2').click(function() {
+			divTag = $('#result')
+			img = "<img src='img/no.jpg' width=150 height=150>"
+			divTag.append(img)
+		})
+		
+		$('#b3').click(function() {
+			divTag = $('#result')
+			text = $('#text').val()
+			img = "<img src=img/no.jpg width=150 height=150>" // " "안에 들어간 태그문에서 ' '를 따로 안써줘도 된다!
+			divTag.append(img + text + '<br>')
+		})
+	})
+</script>
+</head>
+<body>
+	입력내용 : <input id='text' value='default'>
+	<button id='b1'>글자 추가</button>
+	<button id='b2'>자동차 추가</button>
+	<button id='b3'>둘 다 추가</button>
+	<div id='result'></div>
+</body>
+</html>
