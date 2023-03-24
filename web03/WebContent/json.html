@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+	$(function() { 
+		$('#b1').click(function() {
+			$.ajax({
+				url: "data/rank.json",
+				success: function(doc) {
+					list = doc.rank
+					alert(list.length)
+					for (i = 0; i < list.length; i++) {
+						n = list[i].name
+						t = list[i].tel
+						$('#result').append(n + ", " + t + "<br>")
+					}
+				}
+			})
+		})
+		
+		$('#b2').click(function() {
+			$.ajax({
+				url: "data/MOCK_DATA.json",
+				success: function(doc) {
+					list = doc // MOCK_DATA.json에는 키값이 없이 바로 배열이기 때문에!
+					alert(list.length)
+					for (i = 0; i < list.length; i++) {
+						id = list[i].id
+						email = list[i].email
+						$('#result').append(id + ", " + email + "<br>")
+					}
+				}
+			})
+		})
+		
+		$('#b3').click(function() {
+			$('#result').empty()
+			$.ajax({
+				url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Frss.hankyung.com%2Ffeed%2Fhei.xml&api_key=y7h98apjvjzclsmzc7y3ae6srwp93cghhzz5j3vd",
+				success: function(doc) {
+					alert('성공!>> ' + doc)
+					list = doc.items
+					alert(list.length)
+					for (i = 0; i < list.length; i++) {
+						//console.log(list[i].title)
+						t = list[i].title
+						l = list[i].link
+						p = list[i].pubDate
+						a = list[i].author
+						$('#result').append("<a href=" + l + ">" + t + "</a>" + " " + p + " " + a + "<br>")
+					}
+				}
+			})
+		})
+		
+		$('#b4').click(function() {
+			$('#result').empty()
+			$.ajax({
+				url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Frss.hankyung.com%2Ffeed%2Fit.xml&api_key=y7h98apjvjzclsmzc7y3ae6srwp93cghhzz5j3vd",
+				success: function(doc) {
+					alert('성공!>> ' + doc)
+					list = doc.items
+					alert(list.length)
+					for (i = 0; i < list.length; i++) {
+						//console.log(list[i].title)
+						t = list[i].title
+						l = list[i].link
+						p = list[i].pubDate
+						a = list[i].author
+						$('#result').append("<a href=" + l + ">" + t + "</a>" + " " + p + " " + a + "<br>")
+					}
+				}
+			})
+		})
+		
+		$('#b5').click(function() {
+			$('#result').empty()
+			$.ajax({
+				url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.sbs.co.kr%2Fnews%2FSectionRssFeed.do%3FsectionId%3D01%26plink%3DRSSREADER&api_key=y7h98apjvjzclsmzc7y3ae6srwp93cghhzz5j3vd",
+				success: function(doc) {
+					alert('성공!>> ' + doc)
+					list = doc.items
+					alert(list.length)
+					for (i = 0; i < list.length; i++) {
+						//console.log(list[i].title)
+						t = list[i].title
+						l = list[i].link
+						p = list[i].pubDate
+						a = list[i].author
+						i = list[i].thumbnail // sbs -> 한경은 이미지가 items에 있는게 아니라 하나 더 숨겨져 있어서 json으로 변환이 잘 안됐음!
+						$('#result').append("<img src=" + i + " width=100 height=100>" + "<a href=" + l + ">" + t + "</a>" + p + " " + a + "<br>")
+					}
+				}
+			})
+			
+			/* $.ajax({
+				url: "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fnews.sbs.co.kr%2Fnews%2FSectionRssFeed.do%3FsectionId%3D14%26plink%3DRSSREADER&api_key=rooa9cfdnkctmsnpiftxnozlzfyaunxvudzwajoq",
+				success: function(doc) {
+						alert('성공!>> ' + doc)
+						list = doc.items
+						alert(list.length)
+						for(i = 0; i < list.length; i++){
+							//console.log(list[i].title)
+							t = list[i].title
+							l = list[i].link
+							p = list[i].pubDate
+							a = list[i].author
+							img = list[i].thumbnail
+							$('#result').append("<img src=" + img + " width=200 height=200>" + 
+									"<a href=" + l + ">" + t + "</a>" + p + " " + a + "<br>")
+						}
+				}//success
+			})//ajax */
+		})
+		
+	}) //$
+</script>
+</head>
+<body bgcolor="lime">
+<button style='color: blue; background: pink' id ="b1">JSON받아오기-1</button>
+<button style='color: blue; background: yellow' id ="b2">JSON받아오기-2</button>
+<button style='color: white; background: blue' id ="b3">한경(연예)</button>
+<button style='color: white; background: blue' id ="b4">한경(IT)</button>
+<button style='color: white; background: blue' id ="b5">한경(부동산)</button>
+<hr color="red">
+<div id="result"></div>
+</body>
+</html>
