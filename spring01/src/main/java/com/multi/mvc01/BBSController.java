@@ -2,6 +2,7 @@ package com.multi.mvc01;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller // 스프링에서 제어하는 역할로 등록
@@ -19,7 +20,7 @@ public class BBSController {
 	// 요청된 주소가 어떻게 될 때
 	// 바로 아래에 있는 메서드가 호출이 될지
 	// 써주어야 한다.
-	// 클라이언트로부터 받는 form action은 .multi까지 같아야 하지만, 보내주는 jsp는 . 이후 부분은 상관없음~
+	// 클라이언트로부터 받는 form action이름과 매핑의 인자는 .multi까지 같아야 하지만, 보내주는 jsp는 . 이후 부분은 상관없음~
 	@RequestMapping("insert2.multi") 
 	public void insert(BBS_VO bag) {
 		// 메서드의 입력변수(파라미터)로 변수를 선언해두면, 컨트롤러내의 메서드내에서는
@@ -50,11 +51,12 @@ public class BBSController {
 	}
 
 	@RequestMapping("one2.multi")
-	public void one(int no) {
+	public void one(int no, Model model) {
 		System.out.println("one요청됨.");
 		System.out.println(no);
 		System.out.println(dao);
-		dao.one(no);
+		BBS_VO bag = dao.one(no);
+		model.addAttribute("bag", bag);
 	}
 
 	@RequestMapping("list2.multi")

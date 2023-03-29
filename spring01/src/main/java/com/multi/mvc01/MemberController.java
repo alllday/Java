@@ -2,6 +2,7 @@ package com.multi.mvc01;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller // 스프링에서 제어하는 역할로 등록
@@ -50,15 +51,35 @@ public class MemberController {
 	}
 
 	@RequestMapping("one")
-	public void one(String id) {
+	public void one(String id, Model model) {
 		System.out.println("one요청됨.");
 		System.out.println(id);
-		dao.one(id);
+		MemberVO bag = dao.one(id);
+		// bag에 검색결과 다 들어있음.
+		// views아래 one.jsp로 쓸 수 있도록 설정해주어야 함.
+		model.addAttribute("bag", bag);
 	}
 
 	@RequestMapping("list")
 	public void list(MemberVO bag) {
 		System.out.println("list요청됨.");
 		System.out.println(bag);
+	}
+	
+	@RequestMapping("login") // 따로 return을 안하면 login을 return + RequestMapping의 결과는 views로
+	public String login(MemberVO bag) {
+		System.out.println("login요청됨.");
+		System.out.println(bag);
+		// dao를 이용해 db처리할 예정
+		// views아래로 넘어가게 되어있음.
+		// views아래 login.jsp를 호출하게 됨.
+		int result = dao.login(bag); // 1,0
+		if (result == 1) {
+			return "ok"; // views아래 파일이름.jsp
+		} else {
+			// 로그인 실패시, views아래가 아니고, webapp아래 member.jsp로 가고 싶은 경우!
+			return "redirect:member.jsp";
+			// return "no";
+		}
 	}
 }

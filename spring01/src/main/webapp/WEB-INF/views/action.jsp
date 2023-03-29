@@ -12,10 +12,7 @@ body {
 </style>
 </head>
 <body>
-글 처리 요청이 완료되었습니다.
-${bag.no}<br>
-${bag.title}<br>
-${bag.content}<br>
-${bag.writer}<br>
+<img src="resources/img/action.jpg" width=200 height=200>
 </body>
 </html>
+  

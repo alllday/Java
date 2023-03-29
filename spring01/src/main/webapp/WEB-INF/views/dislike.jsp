@@ -12,10 +12,6 @@ body {
 </style>
 </head>
 <body>
-글 처리 요청이 완료되었습니다.
-${bag.no}<br>
-${bag.title}<br>
-${bag.content}<br>
-${bag.writer}<br>
+커피싫어
 </body>
 </html>

@@ -12,10 +12,7 @@ body {
 </style>
 </head>
 <body>
-글 처리 요청이 완료되었습니다.
-${bag.no}<br>
-${bag.title}<br>
-${bag.content}<br>
-${bag.writer}<br>
+로그인 처리 성공!<br>
+<img src="resources/img/yes.jpg" width=200 height=200>
 </body>
 </html>
