@@ -1,8 +1,12 @@
 package com.multi.mvc01;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller // 스프링에서 제어하는 역할로 등록
@@ -60,9 +64,8 @@ public class BBSController {
 	}
 
 	@RequestMapping("list2.multi")
-	public void list(BBS_VO bag) {
-		System.out.println("list요청됨.");
-		System.out.println(bag);
-		System.out.println(dao);
+	public void list(Model model) {
+		ArrayList<BBS_VO> list = dao.list();
+		model.addAttribute("list", list);
 	}
 }

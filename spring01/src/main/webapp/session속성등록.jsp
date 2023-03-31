@@ -5,14 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-body {
-	background: yellow;
-}
-</style>
 </head>
 <body>
-${id}님 로그인 처리 성공!<br>
-<img src="resources/img/yes.jpg" width=200 height=200>
+<% 
+	session.setAttribute("count", 0);
+	session.setAttribute("user", "root");
+%>
+<a href="session속성가지고오기.jsp">session속성가지고오기</a>
 </body>
 </html>

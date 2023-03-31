@@ -5,14 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-body {
-	background: yellow;
-}
-</style>
 </head>
 <body>
-${id}님 로그인 처리 성공!<br>
-<img src="resources/img/yes.jpg" width=200 height=200>
+로그인한 사람의 id는 <%= session.getAttribute("user") %><br>
+오늘 방문횟수는 <%= session.getAttribute("count") %>
 </body>
 </html>

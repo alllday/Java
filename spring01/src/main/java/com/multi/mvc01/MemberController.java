@@ -1,5 +1,9 @@
 package com.multi.mvc01;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller // 스프링에서 제어하는 역할로 등록
 public class MemberController {
 
-	@Autowired // -> 
+	@Autowired // -> MemberDAO의 싱글톤 객체가 ram에 어디에 있는지 찾아서 그 주소를 아래 변수에 넣어주세요
 	MemberDAO dao; // 전역변수
 	
-	// 컨트롤 하는 기능(CRUD)
+	// 컨트롤 하는 기능(CRUD)3
 	// 회원가입, 수정, 탈퇴, 정보검색
 
 	// 클래스 내에서 기능처리 담당
@@ -61,13 +65,15 @@ public class MemberController {
 	}
 
 	@RequestMapping("list")
-	public void list(MemberVO bag) {
-		System.out.println("list요청됨.");
-		System.out.println(bag);
+	public void list(Model model) {
+		// Model은 컨트롤러의 list를 views/list.jsp까지만 전달할 수 있는 객체
+		ArrayList<MemberVO> list = dao.list();
+		model.addAttribute("list", list);
 	}
 	
 	@RequestMapping("login") // 따로 return을 안하면 login을 return + RequestMapping의 결과는 views로
-	public String login(MemberVO bag) {
+	// jsp에서는 HttpSession이 기본으로 내장, but java에서는 추가해줘야 함
+	public String login(MemberVO bag, HttpSession session) { 
 		System.out.println("login요청됨.");
 		System.out.println(bag);
 		// dao를 이용해 db처리할 예정
@@ -75,6 +81,8 @@ public class MemberController {
 		// views아래 login.jsp를 호출하게 됨.
 		int result = dao.login(bag); // 1,0
 		if (result == 1) {
+			// 로그인이 성공하면, 세션을 잡아두자!
+			session.setAttribute("id", bag.getId());
 			return "ok"; // views아래 파일이름.jsp
 		} else {
 			// 로그인 실패시, views아래가 아니고, webapp아래 member.jsp로 가고 싶은 경우!

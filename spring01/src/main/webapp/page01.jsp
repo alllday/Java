@@ -5,14 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-body {
-	background: yellow;
-}
-</style>
 </head>
 <body>
-${id}님 로그인 처리 성공!<br>
-<img src="resources/img/yes.jpg" width=200 height=200>
+<%
+	Cookie c1 = new Cookie("category", "workout");
+	Cookie c2 = new Cookie("workout", "soccer");
+	
+	response.addCookie(c1);
+	response.addCookie(c2);
+%>
+<a href="page02.jsp">쿠키가지고오기</a>
 </body>
 </html>

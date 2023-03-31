@@ -5,14 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-body {
-	background: yellow;
-}
-</style>
 </head>
 <body>
-${id}님 로그인 처리 성공!<br>
-<img src="resources/img/yes.jpg" width=200 height=200>
+<img src="resources/img/comic.jpg" width=200 height=200>
+<%
+	if(session.getAttribute("id") != null){
+%>
+<form action="aaa">
+	댓글:<input name="reply"><button>댓글달기</button>
+</form>
+<%}%>
 </body>
 </html>
