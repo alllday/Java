@@ -1,12 +1,10 @@
 package com.multi.mvc200;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller // 스프링에서 제어하는 역할로 등록
@@ -42,19 +40,23 @@ public class BBSController {
 	}
 
 	@RequestMapping("update2.multi")
-	public void update(BBS_VO bag) {
+	public void update(BBS_VO bag, Model model) {
 		System.out.println("update요청됨.");
 		System.out.println(bag);
 		System.out.println(dao);
 		dao.update(bag);
+		ArrayList<BBS_VO> list = dao.list();
+		model.addAttribute("list", list);
 	}
 
 	@RequestMapping("delete2.multi")
-	public void delete(int no) {
+	public void delete(int no, Model model) {
 		System.out.println("delete요청됨.");
 		System.out.println(no);
 		System.out.println(dao);
 		dao.delete(no);
+		ArrayList<BBS_VO> list = dao.list();
+		model.addAttribute("list", list);
 	}
 
 	@RequestMapping("one2.multi")
@@ -77,5 +79,17 @@ public class BBSController {
 	public void list(Model model) {
 		ArrayList<BBS_VO> list = dao.list();
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("list5")
+	public void list5(Model model) {
+		ArrayList<BBS_VO> list = dao.list();
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("one6")
+	public void one6(int no, Model model) {
+		BBS_VO bag = dao.one(no);
+		model.addAttribute("bag", bag);
 	}
 }

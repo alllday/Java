@@ -47,6 +47,8 @@
 	<button style="background: pink;">로그인 화면으로 go</button>
 </a>
 <%} %>
+<a href="list2.multi">모든 글 정보 가져오기</a>
+<hr color="red">
 <h3>글검색 화면입니다. </h3>
 <hr color="red">
 <form action="one2.multi" method="get">
