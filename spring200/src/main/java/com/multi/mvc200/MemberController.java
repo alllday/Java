@@ -2,12 +2,14 @@ package com.multi.mvc200;
 
 import java.util.ArrayList;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller // 스프링에서 제어하는 역할로 등록
 public class MemberController {
@@ -75,10 +77,25 @@ public class MemberController {
 	}
 
 	@RequestMapping("list7")
-	public void list(Model model) {
+	public void list7(Model model) {
 		// Model은 컨트롤러의 list를 views/list.jsp까지만 전달할 수 있는 객체
 		ArrayList<MemberVO> list = dao.list();
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("jsonResponse3")
+	@ResponseBody
+	public MemberVO jsonResponse3(String id) {
+		MemberVO bag = dao.one(id);
+		return bag;
+	}
+	
+	@RequestMapping("jsonResponse4")
+	@ResponseBody
+	public ArrayList<MemberVO> jsonResponse4() {
+		// Model은 컨트롤러의 list를 views/list.jsp까지만 전달할 수 있는 객체
+		ArrayList<MemberVO> list = dao.list();
+		return list;
 	}
 	
 	@RequestMapping("login") // 따로 return을 안하면 login을 return + RequestMapping의 결과는 views로

@@ -19,7 +19,8 @@
 			} // success
 		}) // ajax
 	
-		$('#b1').click(function() {
+		// 이 방식 써보기 : 성공했을 때 페이지 넘김==> location.href=“a.jsp”
+		/* $('#b1').click(function() {
 			$('#result').empty()
 			$.ajax({
 				url : "update2.multi",
@@ -31,10 +32,23 @@
 					$('#result').append(x)
 				} // success
 			}) // ajax
+		}) // b1 */
+		
+		$('#b1').click(function() { // 삭제도 비슷하니까 업데이트만 한거니까 오해하지말기~
+			$('#result').empty()
+			$.ajax({
+				url : "update22",
+				data : {
+					no : $('#no').val(),
+					content : $('#content').val()
+				},
+				success : function(x) {
+					location.href="ajax_test2.jsp"
+				} // success
+			}) // ajax
 		}) // b1
 		
 		$('#b2').click(function() {
-			alert($('#no2').val())
 			$('#result').empty()
 			$.ajax({
 				url : "delete2.multi",

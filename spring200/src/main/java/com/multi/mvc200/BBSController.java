@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller // 스프링에서 제어하는 역할로 등록
 public class BBSController {
@@ -48,6 +49,11 @@ public class BBSController {
 		ArrayList<BBS_VO> list = dao.list();
 		model.addAttribute("list", list);
 	}
+	
+	@RequestMapping("update22")
+	public void update(BBS_VO bag) {
+		dao.update(bag);
+	}
 
 	@RequestMapping("delete2.multi")
 	public void delete(int no, Model model) {
@@ -71,8 +77,19 @@ public class BBSController {
 		ArrayList<ReplyVO> list = dao2.list(no);
 		model.addAttribute("list", list);
 		model.addAttribute("bag", bag);
-		
-		
+	}
+	
+	@RequestMapping("one22")
+	@ResponseBody // views로 넘어가지 않고, return값인 bag데이터를 json으로 만들어서 클라이언트로 전송
+				  // 클라이언트 브라우저에서는 success: funtion(x)
+			      // 결과가 함수의 입력변수인 x로 쏙 들어간다!
+	public BBS_VO one22(int no) {
+		System.out.println("one요청됨.");
+		System.out.println(no);
+		BBS_VO bag = dao.one(no);
+		// 검색결과 있는지 프린트!
+		System.out.println(bag);
+		return bag;
 	}
 
 	@RequestMapping("list2.multi")
@@ -85,6 +102,14 @@ public class BBSController {
 	public void list5(Model model) {
 		ArrayList<BBS_VO> list = dao.list();
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("list55")
+	@ResponseBody
+	public ArrayList<BBS_VO> list55() {
+		ArrayList<BBS_VO> list = dao.list();
+		System.out.println(list.size());
+		return list;
 	}
 	
 	@RequestMapping("one6")
