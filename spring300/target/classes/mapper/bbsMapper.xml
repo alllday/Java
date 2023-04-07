@@ -2,18 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bbs">
 	
-	<insert id="create" parameterType="bbsVO">
+	<!-- 원래는 parameterType = com.multi.mvc300.BBS_VO 인데,
+		 mybatis-config.xml 에서 수정해줬잖아!!  -->
+	<insert id="create" parameterType="bbsVO"> 
 		<!-- insert into bbs(title, content, writer) values (#{title}, #{content}, #{writer}) -->
 		insert into bbs values (null, #{title}, #{content}, #{writer})
 	</insert>
 	
-	<delete id="del"  parameterType="bbsVO">
+	<delete id="del"  parameterType="int"> <!-- parameterType을 bbsVO라고 해도 되긴 함! -->
 		delete from bbs where no = #{no}
 	</delete>
 	
 	<update id="up"  parameterType="bbsVO">
 		update bbs set content = #{content} where no = #{no}
 	</update>
+	
+	<select id="one" parameterType="int" resultType="bbsVO">
+		select * from bbs where no = #{no}
+	</select>
 	
 </mapper>
 

@@ -54,16 +54,14 @@ public class MemberController {
 		System.out.println(id);
 		dao.delete(id);
 	}
-//
-//	@RequestMapping("one")
-//	public void one(String id, Model model) {
-//		System.out.println("one요청됨.");
-//		System.out.println(id);
-//		MemberVO bag = dao.one(id);
-//		// bag에 검색결과 다 들어있음.
-//		// views아래 one.jsp로 쓸 수 있도록 설정해주어야 함.
-//		model.addAttribute("bag", bag);
-//	}
+
+	@RequestMapping("one")
+	public void one(String id, Model model) {
+		System.out.println("one요청됨.");
+		System.out.println(id);
+		MemberVO bag = dao.one(id);
+		model.addAttribute("bag", bag);
+	}
 //	
 //	@RequestMapping("one5")
 //	public void one5(String id, Model model) {

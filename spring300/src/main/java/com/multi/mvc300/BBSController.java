@@ -66,6 +66,12 @@ public class BBSController {
 //		ArrayList<BBS_VO> list = dao.list();
 //		model.addAttribute("list", list);
 	}
+	
+	@RequestMapping("one2.multi")
+	public void one2(int no, Model model) {
+		BBS_VO bag = dao.one(no);
+		model.addAttribute("bag", bag);
+	}
 //
 //	@RequestMapping("one2.multi")
 //	public void one(int no, Model model) {
@@ -114,9 +120,5 @@ public class BBSController {
 //		return list;
 //	}
 //	
-//	@RequestMapping("one6")
-//	public void one6(int no, Model model) {
-//		BBS_VO bag = dao.one(no);
-//		model.addAttribute("bag", bag);
-//	}
+
 }

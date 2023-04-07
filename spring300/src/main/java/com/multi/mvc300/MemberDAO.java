@@ -26,10 +26,11 @@ public class MemberDAO { // CRUD
 //		return result;
 //	}
 //
-//	public MemberVO one(String id) { // select
-//		return bag;
-//	}
-//
+	public MemberVO one(String id) { // select
+		MemberVO bag = my.selectOne("member.one", id);
+		return bag;
+	}
+
 	public int delete(String id) {
 		return my.delete("member.del", id);
 	}

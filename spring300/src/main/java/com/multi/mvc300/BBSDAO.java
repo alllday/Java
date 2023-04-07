@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
 // 테이블 하나당 DAO 하나!
 @Component
@@ -86,53 +87,11 @@ public class BBSDAO {
 //		return list;
 //	}
 //
-//	// select
-//	public BBS_VO one(int no) {
-//		ResultSet rs = null;
-//		BBS_VO bag = null;
-//		try {
-//			// 1.mySQL 연결한 부품 설정
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			System.out.println("1. mySQL과 자바 연결할 부품 설정 성공.");
-//
-//			// 2.mySQL에 연결해보자.(java --- mySQL)
-//			String url = "jdbc:mysql://localhost:3306/multi?serverTimezone=UTC";
-//			String user = "root";
-//			String password = "1234";
-//			Connection con = DriverManager.getConnection(url, user, password); // Connection
-//			// String data = JOptionPane.showInputDialog("이름입력"); //String, 임아무개
-//			System.out.println("2. mySQL 연결 성공.");
-//
-//			String sql = "select * from bbs where no = ? "; // delete
-//			PreparedStatement ps = con.prepareStatement(sql); // con부품으로 sql스트링에 있는 것을 SQL부품으로 만들어 주세요.
-//			ps.setInt(1, no);
-//			System.out.println("3. SQL문 부품(개체)으로 만들어주기");
-//
-//			rs = ps.executeQuery();
-//			System.out.println("4. SQL문 오라클로 보내기 성공");
-//			if (rs.next()) {
-//				System.out.println("검색결과 있음");
-//
-//				int no2 = rs.getInt(1);
-//				String title = rs.getString(2);
-//				String content = rs.getString(3);
-//				String writer = rs.getString(4);
-//
-//				System.out.println(no2 + " " + title + " " + content + " " + writer);
-//
-//				bag = new BBS_VO();
-//				bag.setNo(no2);
-//				bag.setTitle(title);
-//				bag.setContent(content);
-//				bag.setWriter(writer);
-//			} else {
-//				System.out.println("검색결과 없음");
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return bag;
-//	}
+	// select
+	public BBS_VO one(int no) {
+		BBS_VO bag = my.selectOne("bbs.one", no);
+		return bag;
+	}
 
 	public int delete(int no) {
 		return my.delete("bbs.del", no);
