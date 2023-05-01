@@ -1,39 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<jsp:include page="header.jsp"></jsp:include>
-<script type="text/javascript">
-$(function() {
-	$.ajax({
-		url: "list.memo",
-		success: function(table) {
-			$('#result').html(table)
-		}
-	})
-})
+<%@ include file="header.jsp"%>
+<script>
+	$(function() {
+		//사이트 시작하자마자 목록을 가지고 와서, #result에 넣어줌.
+		$.ajax({
+			url : "list.memo",
+			success : function(result) { 
+				$("#result").html(result);
+			}
+		});
+
+		//insert.memo
+		$("#push").click(function() {
+			$.ajax({ 
+				url : "insert.memo", 
+				data : {
+					name : $("#name").val(),
+					content : $("#content").val(),
+					weather : $("#weather").val()
+				},
+				success : function() { 
+					//insert하고, 전체 목록을 다시 가지고 온다.
+					$.ajax({
+						url : "list.memo",
+						success : function(result) { 
+							$("#result").html(result);
+						}
+					});
+					//입력값 지우기
+					$("#name").val("")
+					$("#content").val("")
+					$("#weather").val("")
+				}
+			});
+		});
+	});
+
 </script>
-<style type="text/css">
-	h3{
-		width: 800px;
-		height: 35px;
-		background: pink;
-	}
-</style>
 </head>
 <body>
-<h3>멀티 메모장</h3>
-<hr color="blue">
-	<form action="insert.memo">
-		작성자 : <input name="name" value="win">
-		내용 : <input name="content" value="win">
-		날씨 : <input name="weather" value="win"><br>
-		<button>서버로 전송</button>
-	</form>
-<hr color="blue">	
-<div id="result" style="background=pink" ></div>
+	<h2 style="background: orange; color: red; width: 800px; height: 50px;">멀티 메모장!! 자유롭게 아무말이나~~!!</h2>
+
+	이름 : <input id="name" value="win"> 
+	메모 : <input id="content" size="30" value="win">
+	날씨 : <input id="weather" value="win"> 
+	<button id="push">등록</button>
+	<div id="result" style="background: yellow; width:800px; height: 300px;"></div>
 </body>
 </html>
